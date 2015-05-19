@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.22823.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amido.Net.Http.Formatting.YamlMediaTypeFormatter", "Amido.Net.Http.Formatting.YamlMediaTypeFormatter\Amido.Net.Http.Formatting.YamlMediaTypeFormatter.csproj", "{4C6BC555-04B3-4E58-8615-B5A1C781860E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amido.Net.Http.Formatting.YamlMediaTypeFormatter.Samples", "Amido.Net.Http.Formatting.YamlMediaTypeFormatter.Samples\Amido.Net.Http.Formatting.YamlMediaTypeFormatter.Samples.csproj", "{932BD898-D941-4FD4-AC09-E4EA35E93C39}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E44D6EAC-7594-4027-B6C5-5779657E87C4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{78DBC234-16CE-43B3-8749-E599ED4DCD11}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4C6BC555-04B3-4E58-8615-B5A1C781860E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C6BC555-04B3-4E58-8615-B5A1C781860E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C6BC555-04B3-4E58-8615-B5A1C781860E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C6BC555-04B3-4E58-8615-B5A1C781860E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{932BD898-D941-4FD4-AC09-E4EA35E93C39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{932BD898-D941-4FD4-AC09-E4EA35E93C39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{932BD898-D941-4FD4-AC09-E4EA35E93C39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{932BD898-D941-4FD4-AC09-E4EA35E93C39}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4C6BC555-04B3-4E58-8615-B5A1C781860E} = {E44D6EAC-7594-4027-B6C5-5779657E87C4}
+		{932BD898-D941-4FD4-AC09-E4EA35E93C39} = {78DBC234-16CE-43B3-8749-E599ED4DCD11}
+	EndGlobalSection
+EndGlobal

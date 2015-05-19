@@ -1,0 +1,143 @@
+﻿@model dynamic
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Web API YAML MediaTypeFormatter Examples</title>
+
+    <!-- Prism JS -->
+    <link rel="stylesheet" href="/Content/prism.css" />
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css" />
+
+    <!-- Demo SPA -->
+    <link rel="stylesheet" href="~/Content/Site.css" />
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="container">
+    <h1>Web API YAML MediaTypeFormatter</h1>
+    <h2>Examples</h2>
+    <p>Use the controls below to vary the Content-Type and API that is called by the sample. There are two APIs available in this sample:</p>
+    <ol>
+        <li><code>/api/product</code> - returns a single product, exactly the same product is returned each time.</li>
+        <li><code>/api/products</code> - returns a list of products, the product brand, name, variant size and variant colour is randomized.</li>
+    </ol>
+    <p>All four possible MIME Types or Content-Types are included to exercise all of the options available using this media type formatting, it is generally accepted that the use of either <code>application/x-yaml</code> or <code>text/x-yaml</code> is preferred as YAML has yet to be accepted as a formal MIME Type.</p>
+    <h3>HTTP GET Request</h3>
+    <p>This GET example, shows the MediaTyeFormatter in action serializing a model into YAML.</p>
+    <form class="form-inline">
+        <label for="contentTypeGet">Content-Type: </label>
+        <select class="form-control" id="contentTypeGet" onchange="refresh('Get');">
+            <option data-codelang="yaml">text/yaml</option>
+            <option data-codelang="yaml">application/yaml</option>
+            <option data-codelang="yaml">text/x-yaml</option>
+            <option data-codelang="yaml">application/x-yaml</option>
+            <option data-codelang="markup">application/xml</option>
+            <option data-codelang="javascript">application/json</option>
+        </select>
+        <label for="urlGet" class="second">URL: </label>
+        <select class="form-control" id="urlGet" onchange="refresh('Get');">
+            <option>/api/product</option>
+            <option>/api/products</option>
+        </select>
+        <span id="statusGet" class="idle">Idle</span>
+    </form>
+    <pre id="dataWrapperGet" class="language-yaml"><code id="dataGet">Status: Content Not Loaded</code></pre>
+    <h3>HTTP POST Request</h3>
+    <p>The POST Example is the transverse of the GET Example, showing serialization of a YAML document into a model.</p>
+    <form class="form-inline">
+        <div class="form-group">
+            <label for="contentTypePost">Content-Type: </label>
+            <select class="form-control" id="contentTypePost" onchange="refresh('Post');">
+                <option data-codelang="yaml">text/yaml</option>
+                <option data-codelang="yaml">application/yaml</option>
+                <option data-codelang="yaml">text/x-yaml</option>
+                <option data-codelang="yaml">application/x-yaml</option>
+                <option data-codelang="markup">application/xml</option>
+                <option data-codelang="javascript">application/json</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="urlPost" class="second">URL: </label>
+            <select class="form-control" id="urlPost" onchange="refresh('Post');">
+                <option>/api/product</option>
+                <option>/api/products</option>
+            </select>
+            <span id="statusPost" class="idle">Idle</span>
+        </div>
+    </form>
+    <form class="form">
+        <div class="form-group">
+            <label for="bodyPost">Body:</label>
+            <textarea class="form-control" rows="7" id="bodyPost" onchange="refresh('Post')">productName: Azure T-Shirt
+brand: Microsoft
+variants:
+- colour: Red
+  size: Large
+- colour: Blue
+  size: Medium</textarea>
+        </div>
+    </form>
+    <pre id="dataWrapperPost" class="language-yaml"><code id="dataPost">Status: Content Not Loaded</code></pre>
+    <h2>Include YAML MediaTypeFormatter in your WebAPI Project</h2>
+    <p>The MediaTypeFormatter has been compiled against the .NET Framework v4.0 for wide compatibility, you can import it into your project with the following steps:</p>
+    <ol>
+        <li>Install the NuGet Package: <pre class="language-clike"><code>PM> Install-Package Amido.Net.Http.Formatting.YamlMediaTypeFormatter</code></pre></li>
+        <li>In your <code>WebApiConfig.cs</code> at the following code to the <code>Register</code> method: <pre class="language-clike"><code>config.Formatters.Add(new YamlMediaTypeFormatter());</code></pre></li>
+        <li>Recompile and run your project, when making a request to your API include one of the following Content-Types: <code>text/yaml</code>, <code>application/yaml</code>, <code>text/x-yaml</code>, <code>application/x-yaml</code></li>
+    </ol>
+    <h2>Configure the YAML MediaTypeFormatter</h2>
+    <p>YamlMediaTypeFormatter utilizes <a href="https://www.nuget.org/packages/YamlDotNet/">YamlDotNet</a> internally to perform YAML Serialization and Deserialization, both serialization and deserialization can be controlled using the following public properties:</p>
+    <ul>
+        <li><code>SerializationOptions</code>: Settings controllings various features of the YAML Serializer including Aliases and JSON Compatibility.</li>
+        <li><code>NamingConvention</code>: Control over the naming convention of keys during serialization and deserialization, either draw from the existing pool of naming conventions or roll your own.</li>
+        <li><code>ObjectFactory</code>: Control over the objects created during deserialization.</li>
+        <li><code>IgnoreUnmatched</code>: Enables the passing over unmatched keys when deserialzing to a type.</li>
+    </ul>
+    <h2>Contributing</h2>
+    <p>We welcome contributions in the form of GitHub Pull Requests, you will need to use Visual Stuido 2015 as I use some of the syntactic sugar from C# 6.0.  I would also suggest you use ReSharper to maintain coding style through the project.</p>
+    <h2>Frequently Asked Questions</h2>
+    <h3>YAML isn't well suited to APIs, you know that right?</h3>
+    <p>Yes, I know.</p>
+    <h3>So why did you build this?</h3>
+    <p>Mainly, because I can. It has been an exercise in creating a MediaTypeFormatter in ASP.NET WebAPI. Secondarily because it gives users of my API one more way of accessing the data, as an example by using curl or wget to download a response from the API and then using shyaml to extract data from the file.</p>
+    <h3>Okay... I still really think this is a bad idea!</h3>
+    <p>That's not a question, but it is fine to feel that way. I really recommend you have a look at the <a href="https://www.headspace.com/">Headspace App</a> available for both iOS and Android to help you find peace.</p>
+    <h3>When I serialized my object models manually, the output is different, what gives?</h3>
+    <p>I set some defaults, mainly the <code>SerializationOptions.DisableAliases</code> to prevent errant <code>&amp;o0</code>, <code>&amp;o1</code>, etc. markup from being emitted.</p>
+    <h3>Who are you people?</h3>
+    <p>My name is <a href="https://uk.linkedin.com/in/devopsrichard">Richard Slater</a>, I am a Consultant at <a href="https://www.amido.com/">Amido</a>. I specialize in Release Engineering and Platform Architecture and I am most frequently found taking on a DevOps role within our development and consulting teams.</p>
+    <p>We’re a straight-talking, pragmatic technology consultancy who helps companies drive growth by increasing customer engagement and insight. We cut through the confusion of big data, omni-channel and security to add the missing links that enable safe and superior customer experiences.</p>
+    <p>As a company we are always looking for fresh talent; so if you are interested please do <a href="https://www.amido.com/talent/">get in touch</a>.</p>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/Site.js"></script>
+    <script>
+        jQuery(document).ready(function() {
+            getData('Get', '/api/product', 'text/yaml', 'yaml');
+            getData('Post', '/api/product', 'text/yaml', 'yaml');
+        });
+    </script>
+</div>
+<script src="/Scripts/prism.js" data-manual></script>
+</body>
+</html>

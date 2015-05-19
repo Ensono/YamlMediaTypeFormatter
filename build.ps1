@@ -1,0 +1,1 @@
+Invoke-psake -framework 4.6
