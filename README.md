@@ -1,3 +1,5 @@
+![Web API YAML MediaTypeFormatter](artefacts/logo.png)
+
 ## Web API YAML MediaTypeFormatter
 
 ### Installation
