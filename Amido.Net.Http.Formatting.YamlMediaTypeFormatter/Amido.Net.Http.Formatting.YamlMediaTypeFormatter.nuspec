@@ -10,10 +10,10 @@
         <projectUrl>http://www.amido.com/labs/yaml-mediatypeformatter</projectUrl>
         <iconUrl>https://static.amido.com/wp-content/uploads/2015/05/nuget-logo-128.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>A MediaTypeFormatter allowing the use of YAML (YAML Ain't Markup Language) as a media type in ASP.NET Web API.  Searialization and Deserialization are supported so you can both emit and accept YAML in place of XML or JSON.</description>
+        <description>MediaTypeFormatter allowing the use of YAML (YAML Ain't Markup Language) as a the MIME-Type or content-type in ASP.NET Web API.  Both searialization and deserialization are supported allowing web services to both emit and accept YAML in place of XML or JSON.</description>
         <releaseNotes>Initial Release.</releaseNotes>
         <copyright>Copyright 2015, Amido Limited</copyright>
-        <tags>WebAPI, YAML, MediaTypeFormatter, MediaType, ContentType, formatter, parser</tags>
+        <tags>WebAPI, YAML, Media, MediaTypeFormatter, MediaType, MIMEType, Mime-Type, ContentType, formatter, parser</tags>
         <dependencies>
             <group targetFramework="net40">
                 <dependency id="YamlDotNet" version="3.5.1"/>
