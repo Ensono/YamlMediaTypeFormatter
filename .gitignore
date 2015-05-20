@@ -53,6 +53,9 @@ _ReSharper*/
 
 # NuGet
 packages/
+
+# Sublime Text
+*.sublime-workspace
 *.nupkg
 
 # ncrunch
