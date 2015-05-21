@@ -6,9 +6,9 @@
         <version>$version$</version>
         <authors>Richard Slater</authors>
         <owners>Amido Limited</owners>
-        <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0.txt</licenseUrl>
-        <projectUrl>http://www.amido.com/labs/yaml-mediatypeformatter</projectUrl>
-        <iconUrl>https://static.amido.com/wp-content/uploads/2015/05/nuget-logo-128.png</iconUrl>
+        <licenseUrl>https://www.apache.org/licenses/LICENSE-2.0.txt</licenseUrl>
+        <projectUrl>https://www.amido.com/labs/yaml-mediatypeformatter</projectUrl>
+        <iconUrl>https://github.com/amido/YamlMediaTypeFormatter/blob/master/artefacts/nuget-logo-128.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>MediaTypeFormatter allowing the use of YAML (YAML Ain't Markup Language) as a the MIME-Type or content-type in ASP.NET Web API.  Both searialization and deserialization are supported allowing web services to both emit and accept YAML in place of XML or JSON.</description>
         <releaseNotes>Initial Release.</releaseNotes>

@@ -18,7 +18,7 @@ The following instructions apply to Visual Studio 2012+ it probably works for ot
 
 #### Command Line
 
-The following instructions apply to Visual Studio 2012+ it probably works for other versions of Visual Studio as long as you have the appropate NuGet Package Manager extension and .NET Framework v4.0.
+The following instructions apply to Visual Studio 2012+ it probably works for other versions of Visual Studio as long as you have the appropriate NuGet Package Manager extension and .NET Framework v4.0.
 
  1. From the Visual Studio Menu Bar, Select "Tools".
  2. Select "NuGet Package Manager", then "Package Manager Console".
