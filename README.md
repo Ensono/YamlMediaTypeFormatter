@@ -16,7 +16,7 @@ The following instructions apply to Visual Studio 2012+ it probably works for ot
  3. Search for "YamlMediaTypeFormatter" and press <Enter>.
  4. Depending on your configuration you may be asked to preview your changes, specifically you will be asked if you want to install YamlDotNet, WebActivatorEx and YamlMediaTypeFormatter.
 
-#### Command Line
+##### Command Line
 
 The following instructions apply to Visual Studio 2012+ it probably works for other versions of Visual Studio as long as you have the appropriate NuGet Package Manager extension and .NET Framework v4.0.
 
