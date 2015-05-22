@@ -1,11 +1,19 @@
 Framework 4.6
 
+Include "Scripts/Initialize-SharedAssemblyInfo.ps1";
+Include "Scripts/Set-AssemblyVersion.ps1";
+
 properties {
   $assemblyVersion = 0;
-  $packageVersion = "1.0.0.{0}" -f $assemblyVersion;
+  $packageVersion = "1.0.0";
+  $rev = $(git rev-parse --short HEAD);
+  $buildVersion = "+build.sha.{0}.seq.{1}" -f $rev, $assemblyVersion;
+  $metadata = "-beta.1";
+  $semanticVersion = "$($packageVersion)$($metadata)$($buildVersion)";
   $toolsVersion = "14.0";
   $buildConfiguration = "Release";
   $solution = "Solutions/Amido.Net.Http.Formatting.YamlMediaTypeFormatter.sln";
+  $sharedAssemblyInfo = "Solutions/SharedAssemblyInfo.cs";
 }
 
 task default -depends Compile
@@ -14,7 +22,15 @@ task Clean {
   msbuild $solution /m /t:clean /p:VisualStudioVersion=$toolsVersion /p:Configuration=$buildConfiguration
 }
 
-task Compile -depends Clean { 
+task SetupSharedAssemblyInfo {
+  Initialize-SharedAssemblyInfo -RemoveComments;
+}
+
+task SetVersion -depends SetupSharedAssemblyInfo {
+  Set-AssemblyVersion -Path $sharedAssemblyInfo -Version $packageVersion -SemanticVersion $semanticVersion;
+}
+
+task Compile -depends SetVersion, Clean { 
   msbuild $solution /m /p:VisualStudioVersion=$toolsVersion /p:Configuration=$buildConfiguration
 }
 

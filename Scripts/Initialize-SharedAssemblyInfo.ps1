@@ -153,5 +153,3 @@ using System.Runtime.InteropServices;
   Set-Content -Path $SharedAssemblyInfoFile -Value $template -Encoding UTF8;
   }
 }
-
-Initialize-SharedAssemblyInfo -RemoveComments
