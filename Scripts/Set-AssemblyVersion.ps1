@@ -34,7 +34,5 @@ function Set-AssemblyVersion {
  
     Remove-Item $PathActual
     Rename-Item $tempFile $PathActual
- 
-    Write-Host "Updated version to: $version in $PathActual"
   }
 }
