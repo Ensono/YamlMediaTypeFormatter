@@ -23,7 +23,6 @@ task GitClean -preCondition { (git status | Where-Object { $_ -match 'nothing to
 }
 
 task Clean -depends GitClean {
-  Get-ChildItem -Recurse *.tmp | Remove-Item;
   msbuild $solution /m /t:clean /p:VisualStudioVersion=$toolsVersion /p:Configuration=$buildConfiguration
 }
 
@@ -40,5 +39,6 @@ task Compile -depends SetVersion, Clean {
 }
 
 task Pack -depends Compile {
-  & tools/nuget.exe pack "Solutions/Amido.Net.Http.Formatting.YamlMediaTypeFormatter/Amido.Net.Http.Formatting.YamlMediaTypeFormatter.nuspec" -OutputDirectory "Artefacts" -Version $packageVersion
+  & tools/nuget.exe pack "Solutions/Amido.Net.Http.Formatting.YamlMediaTypeFormatter/Amido.Net.Http.Formatting.YamlMediaTypeFormatter.nuspec" -OutputDirectory "Artefacts" -Version $packageVersion;
+  Set-AssemblyVersion -Path $sharedAssemblyInfo -Version $packageVersion -SemanticVersion "From Source";
 }
