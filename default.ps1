@@ -4,12 +4,10 @@ Include "Scripts/Initialize-SharedAssemblyInfo.ps1";
 Include "Scripts/Set-AssemblyVersion.ps1";
 
 properties {
-  $assemblyVersion = 0;
+  $buildSequenceNumber = 0;
   $packageVersion = "1.0.0";
   $rev = $(git rev-parse --short HEAD);
-  $buildVersion = "+build.sha.{0}.seq.{1}" -f $rev, $assemblyVersion;
   $metadata = "-beta.1";
-  $semanticVersion = "$($packageVersion)$($metadata)$($buildVersion)";
   $toolsVersion = "14.0";
   $buildConfiguration = "Release";
   $solution = "Solutions/Amido.Net.Http.Formatting.YamlMediaTypeFormatter.sln";
@@ -31,6 +29,8 @@ task SetupSharedAssemblyInfo {
 }
 
 task SetVersion -depends SetupSharedAssemblyInfo {
+  $buildVersion = "+build.sha.{0}.seq.{1}" -f $rev, $buildSequenceNumber;
+  $semanticVersion = "$($packageVersion)$($metadata)$($buildVersion)";
   Set-AssemblyVersion -Path $sharedAssemblyInfo -Version $packageVersion -SemanticVersion $semanticVersion;
 }
 
