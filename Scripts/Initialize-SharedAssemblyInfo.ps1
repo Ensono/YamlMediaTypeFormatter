@@ -1,4 +1,5 @@
-﻿function Initialize-SharedAssemblyInfo {
+﻿# Copyright 2015 Amido Limited
+function Initialize-SharedAssemblyInfo {
   Param(
     [Parameter(Mandatory=$False)]
     [Switch]$RemoveComments = $False

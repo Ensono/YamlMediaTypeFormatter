@@ -1,3 +1,4 @@
+# Copyright 2015 Amido Limited
 function Set-AssemblyVersion {
   Param(
     [ValidateScript({Test-Path $_ -PathType 'Leaf'})] 

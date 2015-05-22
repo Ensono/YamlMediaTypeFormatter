@@ -1,3 +1,5 @@
+# Copyright 2015 Amido Limited
+
 Framework 4.6
 
 Include "Scripts/Initialize-SharedAssemblyInfo.ps1";
