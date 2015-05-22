@@ -18,11 +18,11 @@ function Set-AssemblyVersion {
 
     $assemblyVersionPattern = 'AssemblyVersion\("([0-9])+\.([0-9])+\.([0-9])+\-?(.*)?"\)';
     $assemblyFileVersionPattern = 'AssemblyFileVersion\("([0-9])+\.([0-9])+\.([0-9])+\-?(.*)?"\)';
-    $assemblyInformationalVersionPattern = 'AssemblyInformationalVersion\("([0-9])+\.([0-9])+\.([0-9])+\-?(.*)?"\)';
+    $assemblyInformationalVersionPattern = 'AssemblyInformationalVersion\("(.+)\)';
 
     $assemblyVersion = 'AssemblyVersion("' + $Version + '")';
     $assemblyFileVersion = 'AssemblyFileVersion("' + $Version + '")';
-    $assemblyInformationalVersion = 'AssemblyFileVersion("' + $SemanticVersion + '")';
+    $assemblyInformationalVersion = 'AssemblyInformationalVersion("' + $SemanticVersion + '")';
 
     $tempFile = ("{0}.tmp" -f $PathActual)
  
