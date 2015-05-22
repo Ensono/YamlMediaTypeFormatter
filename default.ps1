@@ -18,7 +18,12 @@ properties {
 
 task default -depends Compile
 
-task Clean {
+task GitClean -preCondition { (git status | Where-Object { $_ -match 'nothing to commit' } | Measure-Object).Count -eq 1 } {
+  & git clean -df
+}
+
+task Clean -depends GitClean {
+  Get-ChildItem -Recurse *.tmp | Remove-Item;
   msbuild $solution /m /t:clean /p:VisualStudioVersion=$toolsVersion /p:Configuration=$buildConfiguration
 }
 
