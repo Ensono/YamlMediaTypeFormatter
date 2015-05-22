@@ -64,11 +64,11 @@
         Set-Content -Path $project.VersionInfo.FileName $projectFile;
 
         Write-Host -ForegroundColor Green "... added.";
-      }
+      } 
 
       $assemblyInfoPath = (Join-Path $project.DirectoryName "properties/AssemblyInfo.cs");
       $assemblyInfo = Get-Content $assemblyInfoPath;
-      $newAssemblyInfo = New-Object System.Text.StringBuilder ;
+      $newAssemblyInfo = New-Object System.Text.StringBuilder;
 
       Write-Host -ForegroundColor White "    Inspecting AssemblyInfo.cs in $project"
       $previousLine = "";
@@ -98,7 +98,10 @@
         $previousLine = $line;
       }
 
-      Set-Content -Path $assemblyInfoPath -Value $newAssemblyInfo.ToString().Trim() -Encoding UTF8;
+      $tempFile = "{0}.tmp" -f $assemblyInfoPath;
+      Set-Content -Path $tempFile -Value $newAssemblyInfo.ToString().Trim() -Encoding UTF8;
+      Remove-Item $assemblyInfoPath;
+      Move-Item $tempFile $assemblyInfoPath;
     }
   }
 }
