@@ -1,4 +1,4 @@
-![Web API YAML MediaTypeFormatter](artefacts/logo.png)
+![Web API YAML MediaTypeFormatter](Artefacts/logo.png)
 
 ## Web API YAML MediaTypeFormatter
 
