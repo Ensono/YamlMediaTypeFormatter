@@ -36,9 +36,9 @@ task SetVersion -depends SetupSharedAssemblyInfo {
 
 task Compile -depends SetVersion, Clean { 
   msbuild $solution /m /p:VisualStudioVersion=$toolsVersion /p:Configuration=$buildConfiguration
+  Set-AssemblyVersion -Path $sharedAssemblyInfo -Version $packageVersion -SemanticVersion "From Source";
 }
 
 task Pack -depends Compile {
   & tools/nuget.exe pack "Solutions/Amido.Net.Http.Formatting.YamlMediaTypeFormatter/Amido.Net.Http.Formatting.YamlMediaTypeFormatter.nuspec" -OutputDirectory "Artefacts" -Version $packageVersion;
-  Set-AssemblyVersion -Path $sharedAssemblyInfo -Version $packageVersion -SemanticVersion "From Source";
 }
