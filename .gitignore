@@ -53,6 +53,7 @@ _ReSharper*/
 
 # NuGet
 packages/
+Tools/
 
 # Sublime Text
 *.sublime-workspace

@@ -14,15 +14,26 @@ properties {
   $buildConfiguration = "Release";
   $solution = "Solutions/Amido.Net.Http.Formatting.YamlMediaTypeFormatter.sln";
   $sharedAssemblyInfo = "Solutions/SharedAssemblyInfo.cs";
+  $nugetDownload = "https://nuget.org/nuget.exe";
 }
 
 task default -depends Compile
 
 task GitClean -preCondition { (git status | Where-Object { $_ -match 'nothing to commit' } | Measure-Object).Count -eq 1 } {
-  & git clean -df
+  & git clean -df;
 }
 
-task Clean -depends GitClean {
+task SetupTools -depends GitClean -preCondition { -Not (Test-Path (Resolve-Path "Tools")) } {
+  New-Item -Type Container Tools | Out-Null;
+}
+
+task SetupNuGet -depends GitClean -preCondition { -Not (Test-Path (Resolve-Path "Tools\Nuget.exe")) } {
+  $toolsFolder = Resolve-Path "Tools";
+  $nugetExecutable = Join-Path -Path $toolsFolder -ChildPath "nuget.exe";
+  Invoke-WebRequest -Uri $nugetDownload -OutFile $nugetExecutable;
+}
+
+task Clean -depends SetupNuGet {
   msbuild $solution /m /t:clean /p:VisualStudioVersion=$toolsVersion /p:Configuration=$buildConfiguration
 }
 
