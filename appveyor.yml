@@ -1,0 +1,26 @@
+version: 1.0.0-prerelease{build}
+os: Visual Studio 2015 RC
+build_script:
+- ps: ./pack.ps1
+artifacts:
+- path: Artefacts\Amido.Net.Http.Formatting.YamlMediaTypeFormatter.*.nupkg
+  name: Nuget
+deploy:
+- provider: NuGet
+  api_key:
+    secure: pqfQsKgL/KJdCz/66h0nBwLcPPHlch6JtSe7bp5qdQHAOQ+vGwZ0dp/9rPzoffBp
+  artifact: Nuget
+notifications:
+- provider: HipChat
+  room: 1555355
+  auth_token:
+    secure: YFGiihmsdmN2m3qDUey0LZEoFXC24FU+ZCu7SGVN1MY0o6J/RWqxHRAXzkvb3oEU
+  on_build_success: true
+  on_build_failure: true
+  on_build_status_changed: true
+- provider: Slack
+  incoming_webhook: https://hooks.slack.com/services/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
+  channel: '#oss'
+  on_build_success: true
+  on_build_failure: true
+  on_build_status_changed: true
