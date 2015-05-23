@@ -12,7 +12,8 @@ properties {
   $metadata = "-beta.1";
   $toolsVersion = "14.0";
   $buildConfiguration = "Release";
-  $solution = "Solutions/Amido.Net.Http.Formatting.YamlMediaTypeFormatter.sln";
+  $targetProject = "Amido.Net.Http.Formatting.YamlMediaTypeFormatter";
+  $solution = "Solutions/$targetProject.sln";
   $sharedAssemblyInfo = "Solutions/SharedAssemblyInfo.cs";
   $nugetDownload = "https://nuget.org/nuget.exe";
 }
@@ -52,6 +53,6 @@ task Compile -depends SetVersion, Clean {
   Set-AssemblyVersion -Path $sharedAssemblyInfo -Version $packageVersion -SemanticVersion "From Source";
 }
 
-task Pack -depends Compile {
-  & tools/nuget.exe pack "Solutions/Amido.Net.Http.Formatting.YamlMediaTypeFormatter/Amido.Net.Http.Formatting.YamlMediaTypeFormatter.nuspec" -OutputDirectory "Artefacts" -Version $packageVersion;
+task Pack -depends Compile, SetupNuGet {
+  & tools/nuget.exe pack "Solutions/$targetProject/$targetProject.nuspec" -OutputDirectory "Artefacts" -Version $a -Symbols -NonInteractive;
 }
