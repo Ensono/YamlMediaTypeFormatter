@@ -31,12 +31,18 @@ The following instructions apply to Visual Studio 2012+ it probably works for ot
 
 If you do not want, or for some reason can not use NuGet or WebActivator then it is perfectly possible to install and use YamlMediaTypeFormatter without either.
 
- 1. Obtain the solution source code, by cloning the Git repository into an appropiate location, such as C:\Source:
+ 1. Obtain the solution source code, by cloning the Git repository into an appropriate location, such as C:\Source:
 
         git clone https://github.com/amido/YamlMediaTypeFormatter.git
 
- 2. Update submodules from within the YamlMediaTypeFormatter folder:
+ 2. From PowerShell execute the following command from within the source code folder:
 
-        git submodule update --init --recursive
+        ./build.ps1
 
- 
+ 3. Browse to the following path in PowerShell or Explorer:
+
+        Solutions\Amido.Net.Http.Formatting.YamlMediaTypeFormatter\bin\Release
+
+ 4. Copy `Amido.Net.Http.Formatting.YamlMediaTypeFormatter.dll` to a location that you can reference from within your own project.
+ 5. Add a reference to `Amido.Net.Http.Formatting.YamlMediaTypeFormatter.dll`.
+ 6. TODO: Download, Compile and Reference YamlDotNet
