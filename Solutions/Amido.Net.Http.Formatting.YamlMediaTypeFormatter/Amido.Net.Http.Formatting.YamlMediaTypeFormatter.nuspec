@@ -23,7 +23,7 @@
         </dependencies>
     </metadata>
     <files>
-        <file src="bin\Release\Amido.Net.Http.Formatting.YamlMediaTypeFormatter.*" target="lib\net40"/>
+        <file src="bin\Release\Amido.Net.Http.Formatting.YamlMediaTypeFormatter.dll" target="lib\net40"/>
         <file src="Content\**" target="Content\"/>
     </files>
 </package>
