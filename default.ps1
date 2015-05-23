@@ -24,11 +24,11 @@ task GitClean -preCondition { (git status | Where-Object { $_ -match 'nothing to
   & git clean -df;
 }
 
-task SetupTools -depends GitClean -preCondition { -Not (Test-Path (Resolve-Path "Tools")) } {
+task SetupTools -depends GitClean -preCondition { -Not (Test-Path "$PSScriptRoot\Tools") } {
   New-Item -Type Container Tools | Out-Null;
 }
 
-task SetupNuGet -depends GitClean -preCondition { -Not (Test-Path (Resolve-Path "Tools\Nuget.exe")) } {
+task SetupNuGet -depends SetupTools, GitClean -preCondition { -Not (Test-Path "$PSScriptRoot\Tools\Nuget.exe") } {
   $toolsFolder = Resolve-Path "Tools";
   $nugetExecutable = Join-Path -Path $toolsFolder -ChildPath "nuget.exe";
   Invoke-WebRequest -Uri $nugetDownload -OutFile $nugetExecutable;
@@ -54,5 +54,5 @@ task Compile -depends SetVersion, Clean {
 }
 
 task Pack -depends Compile, SetupNuGet {
-  & tools/nuget.exe pack "Solutions/$targetProject/$targetProject.nuspec" -OutputDirectory "Artefacts" -Version $a -Symbols -NonInteractive;
+  & tools/nuget.exe pack "Solutions/$targetProject/$targetProject.nuspec" -OutputDirectory "Artefacts" -Version $packageVersion -Symbols -NonInteractive;
 }
