@@ -25,7 +25,7 @@ The following instructions apply to Visual Studio 2012+ it probably works for ot
  3. Ensure "nuget.org" is selected in the Package Source drop down.
  4. Enter the following command in the console, replacing [YourProjectName] with the name of the project you wish to install the package:
 
-    PM> Install-Package Amido.Net.Http.Formatting.YamlMediaTypeFormatter -ProjectName [YourProjectName]
+        PM> Install-Package Amido.Net.Http.Formatting.YamlMediaTypeFormatter -ProjectName [YourProjectName]
 
 #### Manual Method
 
@@ -33,10 +33,10 @@ If you do not want, or for some reason can not use NuGet or WebActivator then it
 
  1. Obtain the solution source code, by cloning the Git repository into an appropiate location, such as C:\Source:
 
-    git clone https://github.com/amido/YamlMediaTypeFormatter.git
+        git clone https://github.com/amido/YamlMediaTypeFormatter.git
 
  2. Update submodules from within the YamlMediaTypeFormatter folder:
 
-    git submodule update --init --recursive
+        git submodule update --init --recursive
 
  
