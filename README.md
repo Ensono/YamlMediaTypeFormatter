@@ -1,5 +1,7 @@
 ![Web API YAML MediaTypeFormatter](Artefacts/logo.png)
 
+[![Build status](https://ci.appveyor.com/api/projects/status/x53x7nq4ppfn15y0/branch/master?svg=true)](https://ci.appveyor.com/project/richard-slater/yamlmediatypeformatter/branch/master)
+
 ## Web API YAML MediaTypeFormatter
 
 ### Installation
