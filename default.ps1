@@ -6,10 +6,21 @@ Include "Scripts/Initialize-SharedAssemblyInfo.ps1";
 Include "Scripts/Set-AssemblyVersion.ps1";
 
 properties {
-  $buildSequenceNumber = 0;
+  $release = $false;
+  $buildSequenceNumber = [int]$ENV:APPVEYOR_BUILD_NUMBER;
   $packageVersion = "1.0.0";
   $rev = $(git rev-parse --short HEAD);
-  $metadata = "-beta.1";
+  if ($release) {
+    $metadata = [String]::Empty;
+  }
+  else {
+    if ($buildSequenceNumber -eq 0) {
+      $metadata = "-local";
+    }
+    else {
+      $metadata = "-prerelease{0}" -f $buildSequenceNumber;
+    }
+  }
   $toolsVersion = "14.0";
   $buildConfiguration = "Release";
   $targetProject = "Amido.Net.Http.Formatting.YamlMediaTypeFormatter";
@@ -47,7 +58,7 @@ task SetupSharedAssemblyInfo {
 }
 
 task SetVersion -depends SetupSharedAssemblyInfo {
-  $buildVersion = "+build.sha.{0}.seq.{1}" -f $rev, $buildSequenceNumber;
+  $buildVersion = "+sha.{0}" -f $rev, $buildSequenceNumber;
   $semanticVersion = "$($packageVersion)$($metadata)$($buildVersion)";
   Set-AssemblyVersion -Path $sharedAssemblyInfo -Version $packageVersion -SemanticVersion $semanticVersion;
 }
@@ -58,5 +69,6 @@ task Compile -depends SetVersion, Clean, NugetPackageRestore {
 }
 
 task Pack -depends Compile, SetupNuGet {
-  & Tools/nuget.exe pack "Solutions/$targetProject/$targetProject.nuspec" -OutputDirectory "Artefacts" -Version $packageVersion -Symbols -NonInteractive;
+  $nugetVersion = "$($packageVersion)$($metadata)";
+  & Tools/nuget.exe pack "Solutions/$targetProject/$targetProject.nuspec" -OutputDirectory "Artefacts" -Version $nugetVersion -Symbols -NonInteractive;
 }
