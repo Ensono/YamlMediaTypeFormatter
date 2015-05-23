@@ -34,6 +34,10 @@ task SetupNuGet -depends SetupTools, GitClean -preCondition { -Not (Test-Path "$
   Invoke-WebRequest -Uri $nugetDownload -OutFile $nugetExecutable;
 }
 
+task NugetPackageRestore -depends SetupNuGet {
+  & Tools/nuget.exe restore Solutions;
+}
+
 task Clean -depends SetupNuGet {
   msbuild $solution /m /t:clean /p:VisualStudioVersion=$toolsVersion /p:Configuration=$buildConfiguration
 }
@@ -48,11 +52,11 @@ task SetVersion -depends SetupSharedAssemblyInfo {
   Set-AssemblyVersion -Path $sharedAssemblyInfo -Version $packageVersion -SemanticVersion $semanticVersion;
 }
 
-task Compile -depends SetVersion, Clean { 
+task Compile -depends SetVersion, Clean, NugetPackageRestore { 
   msbuild $solution /m /p:VisualStudioVersion=$toolsVersion /p:Configuration=$buildConfiguration
   Set-AssemblyVersion -Path $sharedAssemblyInfo -Version $packageVersion -SemanticVersion "From Source";
 }
 
 task Pack -depends Compile, SetupNuGet {
-  & tools/nuget.exe pack "Solutions/$targetProject/$targetProject.nuspec" -OutputDirectory "Artefacts" -Version $packageVersion -Symbols -NonInteractive;
+  & Tools/nuget.exe pack "Solutions/$targetProject/$targetProject.nuspec" -OutputDirectory "Artefacts" -Version $packageVersion -Symbols -NonInteractive;
 }
