@@ -75,7 +75,10 @@ In the examples below, I use the HTTPS Git endpoints for each repository as thes
         YamlDotNet\bin\Release-Signed
 
  11. Copy `YamlDotNet.dll` to a location that you can reference from within your own project.
- 12. Finally, add a reference to `YamlDotNet.dll`.
+ 12. Add a reference to `YamlDotNet.dll`.
+ 13. The `MediaTypeFormatter` will need to be registered with ASP.NET Web API, in your `WebApiConfig.cs` at the following code to the `Register` method:
+
+        config.Formatters.Add(new YamlMediaTypeFormatter()); 
 
 ## Contributing
 
