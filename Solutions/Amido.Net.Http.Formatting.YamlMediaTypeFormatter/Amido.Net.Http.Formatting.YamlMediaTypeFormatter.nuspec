@@ -5,14 +5,24 @@
         <title>ASP.NET Web API YAML MediaTypeFormatter</title>
         <version>$version$</version>
         <authors>Richard Slater</authors>
-        <owners>Amido Limited</owners>
+        <owners>Richard Slater,Amido Limited</owners>
         <licenseUrl>https://www.apache.org/licenses/LICENSE-2.0.txt</licenseUrl>
         <projectUrl>https://www.amido.com/labs/yaml-mediatypeformatter</projectUrl>
         <iconUrl>https://github.com/amido/YamlMediaTypeFormatter/blob/master/Artefacts/nuget-logo-128.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>MediaTypeFormatter allowing the use of YAML (YAML Ain't Markup Language) as a the MIME-Type or content-type in ASP.NET Web API.  Both searialization and deserialization are supported allowing web services to both emit and accept YAML in place of XML or JSON.</description>
+        <summary>MediaTypeFormatter allowing the use of YAML, which stands for "YAML Ain't Markup Language", as a the MIME-Type or content-type in ASP.NET Web API.</summary>
+        <description>MediaTypeFormatter allowing the use of YAML (YAML Ain't Markup Language) as a the MIME-Type or content-type in ASP.NET Web API.  Both serialization and deserialization are supported allowing web services to both emit and accept YAML in place of XML or JSON.
+
+        The underlying YAML parsing and rendering function is provided by Antoine Aubry's excellent YamlDotNet, as such it is possible to configure the serialization and deserialization process through a series of public properties on the MediaTypeFormatter.
+
+        YAML is described as "a human friendly data serialization standard for all programming languages".  Like XML, it allows to represent about any kind of data in a portable, platform-independent format.  Unlike XML, it is "human friendly", which means that it is easy for a human to read or produce a valid YAML document.
+
+        MediaTypeFormatters are .NET Classes that allow you to accept and emit different media types using ASP.NET Web API.  Out of the box Web API includes support for JSON, BSON and XML, additional Media Types can be added through MediaTypeFormatters.
+
+        YamlMediaTypeFormatter is released under the Apache 2.0 license, which entitles you to freely use the product in both commercial, non-commercial and open source projects provided the license is distributed with the product.  YamlDotNet is released under the MIT License which which has similar provisions for use in any type of software.</description>
         <releaseNotes>Initial Release.</releaseNotes>
         <copyright>Copyright 2015, Amido Limited</copyright>
+        <language>en-GB</language>
         <tags>WebAPI, YAML, Media, MediaTypeFormatter, MediaType, MIMEType, Mime-Type, ContentType, formatter, parser</tags>
         <dependencies>
             <group targetFramework="net40">
