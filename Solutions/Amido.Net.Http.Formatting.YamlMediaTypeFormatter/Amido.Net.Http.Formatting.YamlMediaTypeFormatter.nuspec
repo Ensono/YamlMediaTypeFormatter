@@ -23,7 +23,7 @@ YamlMediaTypeFormatter is released under the Apache 2.0 license, which entitles 
         <releaseNotes>Initial Release.</releaseNotes>
         <copyright>Copyright 2015, Amido Limited</copyright>
         <language>en-GB</language>
-        <tags>WebAPI, YAML, Media, MediaTypeFormatter, MediaType, MIMEType, Mime-Type, ContentType, formatter, parser</tags>
+        <tags>WebAPI, ASPNETWebAPI, YAML, Media, MediaTypeFormatter, MediaType, MIMEType, Mime-Type, ContentType, formatter, parser</tags>
         <dependencies>
             <group targetFramework="net40">
                 <dependency id="YamlDotNet" version="3.5.1"/>

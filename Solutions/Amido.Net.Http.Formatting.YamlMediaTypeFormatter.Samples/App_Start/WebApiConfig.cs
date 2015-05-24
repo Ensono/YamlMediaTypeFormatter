@@ -8,8 +8,6 @@ namespace Amido.Net.Http.Formatting.YamlMediaTypeFormatter.Samples {
         public static void Register(HttpConfiguration config) {
             config.MapHttpAttributeRoutes();
 
-            config.Formatters.Add(new YamlMediaTypeFormatter());
-
             var json = GlobalConfiguration.Configuration.Formatters.JsonFormatter;
             json.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
 

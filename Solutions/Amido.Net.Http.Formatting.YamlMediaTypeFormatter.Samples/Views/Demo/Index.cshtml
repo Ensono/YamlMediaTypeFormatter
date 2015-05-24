@@ -39,7 +39,7 @@
         <li><code>/api/product</code> - returns a single product, exactly the same product is returned each time.</li>
         <li><code>/api/products</code> - returns a list of products, the product brand, name, variant size and variant colour is randomized.</li>
     </ol>
-    <p>All four possible MIME Types or Content-Types are included to exercise all of the options available using this media type formatting, it is generally accepted that the use of either <code>application/x-yaml</code> or <code>text/x-yaml</code> is preferred as YAML has yet to be accepted as a formal MIME Type.</p>
+    <p>All four possible MIME Types or Content-Types are included to exercise all of the options available using this media type formatting, it is generally accepted that the use of either <code>application/x-yaml</code> or <code>text/x-yaml</code> is preferred as YAML has yet to be accepted as a formal MIME Type, the choice between <code>application/*</code> and <code>text/*</code> is less clear, however I would personally go for text/x-yaml as YAML is a human-readable format.</p>
     <h3>HTTP GET Request</h3>
     <p>This GET example, shows the MediaTyeFormatter in action serializing a model into YAML.</p>
     <form class="form-inline">
@@ -100,8 +100,7 @@ variants:
     <p>The MediaTypeFormatter has been compiled against the .NET Framework v4.0 for wide compatibility, you can import it into your project with the following steps:</p>
     <ol>
         <li>Install the NuGet Package: <pre class="language-clike"><code>PM> Install-Package Amido.Net.Http.Formatting.YamlMediaTypeFormatter</code></pre></li>
-        <li>In your <code>WebApiConfig.cs</code> at the following code to the <code>Register</code> method: <pre class="language-clike"><code>config.Formatters.Add(new YamlMediaTypeFormatter());</code></pre></li>
-        <li>Recompile and run your project, when making a request to your API include one of the following Content-Types: <code>text/yaml</code>, <code>application/yaml</code>, <code>text/x-yaml</code>, <code>application/x-yaml</code></li>
+        <li>Recompile and run your project, when making a request to your API include one of the following Content-Types: <code>text/x-yaml</code> (preferred), <code>application/x-yaml</code>, <code>text/yaml</code>, <code>application/yaml</code></li>
     </ol>
     <h2>Configure the YAML MediaTypeFormatter</h2>
     <p>YamlMediaTypeFormatter utilizes <a href="https://www.nuget.org/packages/YamlDotNet/">YamlDotNet</a> internally to perform YAML Serialization and Deserialization, both serialization and deserialization can be controlled using the following public properties:</p>
@@ -117,10 +116,11 @@ variants:
     <h3>YAML isn't well suited to APIs, you know that right?</h3>
     <p>Yes, I know.</p>
     <h3>So why did you build this?</h3>
-    <p>Mainly, because I can. It has been an exercise in creating a MediaTypeFormatter in ASP.NET WebAPI. Secondarily because it gives users of my API one more way of accessing the data, as an example by using curl or wget to download a response from the API and then using shyaml to extract data from the file.</p>
+    <p>Mainly, because I can. It has been a though provoking exercise in creating a MediaTypeFormatter in ASP.NET WebAPI. Secondarily because it gives users of my API one more way of accessing the data, as an example by using curl or wget to download a response from the API and then using <code>shyaml</code> to extract data from the file.</p>
+    <p>When considering the consumers of our APIs it becomes an even more compelling case when you realize that the data was originally stored in YAML format, in this case YAML is the natural format to access data for these developers, testers and business analysts.</p>
     <h3>Okay... I still really think this is a bad idea!</h3>
     <p>That's not a question, but it is fine to feel that way. I really recommend you have a look at the <a href="https://www.headspace.com/">Headspace App</a> available for both iOS and Android to help you find peace.</p>
-    <h3>When I serialized my object models manually, the output is different, what gives?</h3>
+    <h3>When I serialized my object models manually using YamlDotNet, the output is different, what gives?</h3>
     <p>I set some defaults, mainly the <code>SerializationOptions.DisableAliases</code> to prevent errant <code>&amp;o0</code>, <code>&amp;o1</code>, etc. markup from being emitted.</p>
     <h3>Who are you people?</h3>
     <p>My name is <a href="https://uk.linkedin.com/in/devopsrichard">Richard Slater</a>, I am a Consultant at <a href="https://www.amido.com/">Amido</a>. I specialize in Release Engineering and Platform Architecture and I am most frequently found taking on a DevOps role within our development and consulting teams.</p>

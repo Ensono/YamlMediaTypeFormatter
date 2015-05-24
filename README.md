@@ -76,3 +76,7 @@ In the examples below, I use the HTTPS Git endpoints for each repository as thes
 
  11. Copy `YamlDotNet.dll` to a location that you can reference from within your own project.
  12. Finally, add a reference to `YamlDotNet.dll`.
+
+## Contributing
+
+We welcome contributions from the community in the form of GitHub Pull Requests, you will need to use Visual Stuido 2015 as I use some of the syntactic sugar from C# 6.0.  I would also suggest you use ReSharper 9.1 to maintain coding style through the project.
