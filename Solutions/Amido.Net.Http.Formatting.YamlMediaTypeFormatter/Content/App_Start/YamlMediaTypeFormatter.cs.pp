@@ -1,5 +1,6 @@
 using System;
 using System.Web.Http;
+using Amido.Net.Http.Formatting.YamlMediaTypeFormatter;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(
     typeof($rootnamespace$.App_Start.YamlMediaTypeFormatterConfig), "PreStart")]
