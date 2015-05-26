@@ -1,11 +1,10 @@
 using System.Web.Http;
 
-using Amido.Net.Http.Formatting.YamlMediaTypeFormatter.Samples;
 using Amido.Net.Http.Formatting.YamlMediaTypeFormatter.Samples.Controllers;
 
 using AttributeRouting.Web.Http.WebHost;
 
-[assembly: WebActivator.PreApplicationStartMethod(typeof(AttributeRoutingHttpConfig), "Start")]
+[assembly: WebActivator.PreApplicationStartMethod(typeof(Amido.Net.Http.Formatting.YamlMediaTypeFormatter.Samples.AttributeRoutingHttpConfig), "Start")]
 
 namespace Amido.Net.Http.Formatting.YamlMediaTypeFormatter.Samples 
 {
@@ -25,7 +24,8 @@ namespace Amido.Net.Http.Formatting.YamlMediaTypeFormatter.Samples
             {
                 cfg.InMemory = true;
                 cfg.AutoGenerateRouteNames = true;
-                cfg.AddRoutesFromAssemblyOf<ProductsController>();
+                cfg.AddRoutesFromControllersOfType<ProductController>();
+                cfg.AddRoutesFromControllersOfType<ProductsController>();
             });
         }
     }
