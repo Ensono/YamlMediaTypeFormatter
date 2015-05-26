@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amido.Net.Http.Formatting.Y
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amido.Net.Http.Formatting.YamlMediaTypeFormatter.Samples", "Amido.Net.Http.Formatting.YamlMediaTypeFormatter.Samples\Amido.Net.Http.Formatting.YamlMediaTypeFormatter.Samples.csproj", "{932BD898-D941-4FD4-AC09-E4EA35E93C39}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E44D6EAC-7594-4027-B6C5-5779657E87C4}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assembly", "Assembly", "{E44D6EAC-7594-4027-B6C5-5779657E87C4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{78DBC234-16CE-43B3-8749-E599ED4DCD11}"
 EndProject
@@ -20,6 +20,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amido.Net.Http.Formatting.YamlMediaTypeFormatter.Samples.NetFX452", "Amido.Net.Http.Formatting.YamlMediaTypeFormatter.Samples.NetFX452\Amido.Net.Http.Formatting.YamlMediaTypeFormatter.Samples.NetFX452.csproj", "{6E7440FD-2785-493C-A67A-80AF25BE3357}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amido.Net.Http.Formatting.YamlMediaTypeFormatter.Samples.NetFX46", "Amido.Net.Http.Formatting.YamlMediaTypeFormatter.Samples.NetFX46\Amido.Net.Http.Formatting.YamlMediaTypeFormatter.Samples.NetFX46.csproj", "{81DEDA20-6C31-42AD-825F-40853C542DF3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BB2FEE07-4DBA-44A1-8AC8-810F5117DC15}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amido.Net.Http.Formatting.YamlMediaTypeFormatter.Tests", "Amido.Net.Http.Formatting.YamlMediaTypeFormatter.Tests\Amido.Net.Http.Formatting.YamlMediaTypeFormatter.Tests.csproj", "{7710B2BD-20D6-46AF-A30C-D18B3043AD7C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +59,10 @@ Global
 		{81DEDA20-6C31-42AD-825F-40853C542DF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81DEDA20-6C31-42AD-825F-40853C542DF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81DEDA20-6C31-42AD-825F-40853C542DF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7710B2BD-20D6-46AF-A30C-D18B3043AD7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7710B2BD-20D6-46AF-A30C-D18B3043AD7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7710B2BD-20D6-46AF-A30C-D18B3043AD7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7710B2BD-20D6-46AF-A30C-D18B3043AD7C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,5 +75,6 @@ Global
 		{796992B0-E294-4F58-9E2C-07EB64E659DA} = {78DBC234-16CE-43B3-8749-E599ED4DCD11}
 		{6E7440FD-2785-493C-A67A-80AF25BE3357} = {78DBC234-16CE-43B3-8749-E599ED4DCD11}
 		{81DEDA20-6C31-42AD-825F-40853C542DF3} = {78DBC234-16CE-43B3-8749-E599ED4DCD11}
+		{7710B2BD-20D6-46AF-A30C-D18B3043AD7C} = {BB2FEE07-4DBA-44A1-8AC8-810F5117DC15}
 	EndGlobalSection
 EndGlobal
