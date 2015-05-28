@@ -100,3 +100,5 @@ task PackArchive -depends Compile {
 
   Compress-ToArchive -Source $source -Destination $destination;
 }
+
+task Pack -depends PackNuget, PackArchive { }
