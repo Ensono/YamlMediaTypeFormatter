@@ -10,4 +10,4 @@ if (-Not (Test-Path $psakeModule)) {
 
 Import-Module $psakeModule;
 
-Invoke-psake pack;
+Invoke-psake PackNuget;

@@ -4,6 +4,7 @@ Framework 4.6
 
 Include "Scripts/Initialize-SharedAssemblyInfo.ps1";
 Include "Scripts/Set-AssemblyVersion.ps1";
+Include "Scripts/Compress-ToArchive.ps1";
 
 properties {
   $release = $false;
@@ -76,7 +77,19 @@ task Compile -depends SetVersion, Clean, NugetPackageRestore {
   Set-AssemblyVersion -Path $sharedAssemblyInfo -Version $packageVersion -SemanticVersion "From Source";
 }
 
-task Pack -depends Compile, SetupNuGet {
+task PackNuget -depends Compile, SetupNuGet {
   $nugetVersion = "$($packageVersion)$($metadata)";
   & Tools/nuget.exe pack "Solutions/$targetProject/$targetProject.nuspec" -OutputDirectory "Artefacts" -Version $nugetVersion -Symbols -NonInteractive;
+}
+
+task PackArchive -depends Compile {
+  $semanticVersion = "$($packageVersion)$($metadata)$($buildVersion)";
+  $destination = "$PSScriptRoot/Artefacts/$($targetProject).$($semanticVersion).zip";
+  $source = "$PSScriptRoot/Solutions/$targetProject/bin/$buildConfiguration/";
+
+  if (Test-Path $destination) {
+    Remove-Item $destination;
+  }
+
+  Compress-ToArchive -Source $source -Destination $destination;
 }
