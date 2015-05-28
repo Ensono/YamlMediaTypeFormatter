@@ -69,3 +69,6 @@ Tools/
 
 # Test files
 *.testsettings
+
+# Packages
+Artefacts/*.zip

@@ -50,13 +50,20 @@ task NugetPackageRestore -depends SetupNuGet {
   & Tools/nuget.exe restore Solutions;
 }
 
-task Clean -depends SetupNuGet {
+task CleanBuild {
   if(Test-Path "C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll") {
     msbuild $solution /m /t:clean /p:VisualStudioVersion=$toolsVersion /p:Configuration=$buildConfiguration /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll";
   } else {
     msbuild $solution /m /t:clean /p:VisualStudioVersion=$toolsVersion /p:Configuration=$buildConfiguration
   }
 }
+
+task CleanFileSystem {
+  Get-ChildItem .\Solutions\ -Recurse -Filter "Bin" | Remove-Item -Recurse -Force;
+  Get-ChildItem .\Solutions\ -Recurse -Filter "Obj" | Remove-Item -Recurse -Force;
+}
+
+task Clean -depends CleanFileSystem, CleanBuild { }
 
 task SetupSharedAssemblyInfo {
   Initialize-SharedAssemblyInfo -RemoveComments;
@@ -72,7 +79,7 @@ task Compile -depends SetVersion, Clean, NugetPackageRestore {
   if(Test-Path "C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll") {
     msbuild $solution /m /p:VisualStudioVersion=$toolsVersion /p:Configuration=$buildConfiguration /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll";
   } else {
-    msbuild $solution /m /t:clean /p:VisualStudioVersion=$toolsVersion /p:Configuration=$buildConfiguration
+    msbuild $solution /m /p:VisualStudioVersion=$toolsVersion /p:Configuration=$buildConfiguration
   }
   Set-AssemblyVersion -Path $sharedAssemblyInfo -Version $packageVersion -SemanticVersion "From Source";
 }
