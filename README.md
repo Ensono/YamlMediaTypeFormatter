@@ -33,6 +33,12 @@ The following instructions apply to Visual Studio 2012+ it probably works for ot
 
 If you do not want, or for some reason can not use NuGet or WebActivator then it is possible to install and use `YamlMediaTypeFormatter` without either by compiling and referencing `YamlMediaTypeFormatter` and `YamlDotNet` directly.
 
+#### Download the ZIP Packages
+
+As of the 1.0.0-PreRelease67 version compiled versions of YamlMediaTypeFormatter are released in a ZIP Archive on [GitHub Releases](https://github.com/amido/YamlMediaTypeFormatter/releases) this includes all of the DLLs, PDBs and XML files for YamlMediaTypeFormatter and it's dependencies. 
+
+#### Compile from Source
+
 *Note: In the examples below, I use the HTTPS Git endpoints for each repository as these provide for the widest support.  It is possible use SSH or Git protocols to clone the repositories although firewalls may interfere with their function.*
 
 To complete the following steps you will at a minimum need MSBuild 14 the easiest way to access this is by installing [Visual Stuido 2015 RC](https://www.visualstudio.com/en-us/downloads/visual-studio-2015-downloads-vs) or use a [Pre-built Azure Image](http://blogs.msdn.com/b/visualstudioalm/archive/2014/06/04/visual-studio-14-ctp-now-available-in-the-virtual-machine-azure-gallery.aspx)

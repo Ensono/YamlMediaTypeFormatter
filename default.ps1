@@ -16,10 +16,10 @@ properties {
   }
   else {
     if ($buildSequenceNumber -eq 0) {
-      $metadata = "-local";
+      $metadata = "-Local";
     }
     else {
-      $metadata = "-prerelease{0}" -f $buildSequenceNumber;
+      $metadata = "-PreRelease{0}" -f $buildSequenceNumber;
     }
   }
   $toolsVersion = "14.0";
