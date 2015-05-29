@@ -4,8 +4,6 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
-using System.Runtime.InteropServices;
-using System.Threading;
 using System.Threading.Tasks;
 
 using YamlDotNet.Serialization;
@@ -50,7 +48,7 @@ namespace Amido.Net.Http.Formatting.YamlMediaTypeFormatter {
             NullGuard(type, nameof(type));
             NullGuard(writeStream, nameof(writeStream));
 
-            return RunSynchronously(
+            return TaskHelper.RunSynchronously(
                 () => {
                     using (var writer = new StreamWriter(writeStream)) {
                         var serializer = new Serializer(SerializationOptions, NamingConvention);
@@ -67,7 +65,7 @@ namespace Amido.Net.Http.Formatting.YamlMediaTypeFormatter {
             NullGuard(type, nameof(type));
             NullGuard(readStream, nameof(readStream));
 
-            return RunSynchronously(
+            return TaskHelper.RunSynchronously(
                 () => {
                     using (var reader = new StreamReader(readStream)) {
                         var deserializer = new Deserializer(ObjectFactory, NamingConvention, IgnoreUnmatched);
@@ -84,55 +82,5 @@ namespace Amido.Net.Http.Formatting.YamlMediaTypeFormatter {
                 throw new ArgumentNullException(paramName);
             }
         }
-
-        private static Task<TResult> FromError<TResult>(Exception exception) {
-            var completionSource = new TaskCompletionSource<TResult>();
-            completionSource.SetException(exception);
-            return completionSource.Task;
-        }
-
-        private static Task<TResult> RunSynchronously<TResult>(
-            Func<Task<TResult>> func,
-            CancellationToken cancellationToken = new CancellationToken()) {
-            if (cancellationToken.IsCancellationRequested) {
-                return Cancelled<TResult>.Canceled;
-            }
-
-            try {
-                return func();
-            }
-            catch (Exception ex) {
-                return FromError<TResult>(ex);
-            }
-        }
-
-        private static Task RunSynchronously(Action action, CancellationToken cancellationToken = new CancellationToken()) {
-            if (cancellationToken.IsCancellationRequested) {
-                return Cancelled<AsyncVoid>.Canceled;
-            }
-
-            try {
-                action();
-                var completionSource = new TaskCompletionSource<AsyncVoid>();
-                completionSource.SetResult(new AsyncVoid());
-                return completionSource.Task;
-            }
-            catch (Exception ex) {
-                return FromError<AsyncVoid>(ex);
-            }
-        }
-
-        private static class Cancelled<TResult> {
-            public static readonly Task<TResult> Canceled = GetCancelledTask();
-
-            private static Task<TResult> GetCancelledTask() {
-                var completionSource = new TaskCompletionSource<TResult>();
-                completionSource.SetCanceled();
-                return completionSource.Task;
-            }
-        }
-
-        [StructLayout(LayoutKind.Sequential, Size = 1)]
-        private struct AsyncVoid {}
     }
 }
